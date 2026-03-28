@@ -1,5 +1,8 @@
-name: Build Android APK
-on: [push, pull_request]
+name: Build APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
   build:
@@ -9,7 +12,6 @@ jobs:
       - name: Build with Buildozer
         uses: ArtemSerebriakov/buildozer-action@v1
         with:
-          buildozer_version: master
           command: buildozer android debug
       - name: Upload APK
         uses: actions/upload-artifact@v2
